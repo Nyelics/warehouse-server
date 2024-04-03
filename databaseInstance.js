@@ -2,8 +2,8 @@ const mysql = require("mysql");
 
 // Export the connection object
 exports.con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "warehouse",
+  host: "194.110.173.106",
+  user: "sust_matthew",
+  password: "qwe",
+  database: "sust_main",
 });
