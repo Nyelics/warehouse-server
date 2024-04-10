@@ -10,6 +10,7 @@ const db = process.env.LIVE_DATABASE;
 const username = process.env.LIVE_USERNAME;
 const password = process.env.LIVE_PASSWORD;
 
+console.log(host);
 /**
  * LOCAL HOST
  */
@@ -21,7 +22,7 @@ const password = process.env.LIVE_PASSWORD;
 
 exports.con = mysql.createConnection({
   host: host,
-  user: db,
-  password: username,
-  database: password,
+  user: username,
+  password: password,
+  database: db,
 });

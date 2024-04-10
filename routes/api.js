@@ -9,7 +9,7 @@ const qualityController = require("../controllers/qualityController");
 
 const router = express.Router();
 
-// Define routes
+// Define routesx
 
 router.get("/", (req, res) => {
   res.send("Hello, this is the dashboard");
