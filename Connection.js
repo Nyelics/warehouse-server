@@ -1,12 +1,11 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser"); // Import body-parser middleware
+const bodyParser = require("body-parser");
 const session = require("express-session");
-const port = 3036;
-const app = express(); // Creating an instance of Express
+const app = express();
 const apiRoutes = require("./routes/api");
 
-// Middleware to parse JSON and urlencoded bodies
+// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
@@ -19,7 +18,11 @@ app.use(
     saveUninitialized: false,
   })
 );
-// Start server
+
+// Define your routes here
+
+// Start the server
+const port = process.env.PORT || 3036;
 app.listen(port, () => {
-  console.log(`app listening on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
