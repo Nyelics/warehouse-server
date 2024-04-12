@@ -3,9 +3,11 @@ const express = require("express");
 const accountController = require("../controllers/accountController");
 const supplyController = require("../controllers/supplyController");
 const storageLocController = require("../controllers/storageLocController");
-const dummySupplierController = require("../controllers/dummySupplierController");
 const messageController = require("../controllers/messageController");
 const qualityController = require("../controllers/qualityController");
+const dummySupplierController = require("../controllers/dummySupplierController");
+const dummyOrdersController = require("../controllers/dummyOrdersController");
+const transferController = require("../controllers/transferController");
 
 const router = express.Router();
 
@@ -44,11 +46,6 @@ router.post("/storageloc/store", storageLocController.store);
 router.patch("/storageloc/patch", storageLocController.patch);
 
 /**
- * DUMMY SUPPLIER
- */
-router.get("/dummysupplies", dummySupplierController.getDummySupplies);
-
-/**
  * MESSAGES
  */
 router.get("/messages/:id", messageController.getMessages);
@@ -63,5 +60,25 @@ router.get("/quality/rating", qualityController.rating);
 router.get("/quality/completed", qualityController.completed);
 router.post("/quality/store", qualityController.store);
 router.patch("/quality/patch/:id", qualityController.patch);
+
+/**
+ * DUMMY SUPPLIER
+ */
+router.get("/dummysupplies", dummySupplierController.getDummySupplies);
+
+/**
+ * DUMMY SUPPLIER
+ */
+
+router.get("/dummyorders", dummyOrdersController.getDummyOrders);
+
+/**
+ * TRANSFER UNITS
+ */
+
+router.get("/transferunit", transferController.getTransferRequests);
+router.patch("/transferunit/:id", transferController.updateStatus);
+
+router.post("/transferunit/store", transferController.store);
 
 module.exports = router;

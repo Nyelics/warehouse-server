@@ -145,9 +145,9 @@ exports.roles = async (req, res) => {
  */
 
 exports.login = async (req, res) => {
-  // const {username, password} = req.body;
   const username = req.body.username;
   const password = req.body.password;
+
   try {
     // Fetch user by username
     const q =
@@ -174,9 +174,10 @@ exports.login = async (req, res) => {
         expiresIn: "30m",
       });
 
+      // Return user data along with the token
       return res
         .status(201)
-        .json({message: "User verification successful", token});
+        .json({message: "User verification successful", token, user});
     });
   } catch (err) {
     console.error("Error occurred while logging in:", err);
