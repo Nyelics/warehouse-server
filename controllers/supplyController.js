@@ -21,11 +21,26 @@ exports.getSupplies = (req, res) => {
 
 exports.completed = (req, res) => {
   const q =
-    "SELECT s.capacity, s.description, s.location, s.name, SUM(sr.quantity) AS total_quantity FROM fms_g20_storage AS s JOIN fms_g20_supply_requests AS sr ON s.id = sr.storage_loc WHERE sr.status = ? GROUP BY s.capacity, s.description, s.location, s.name;";
+    "SELECT s.id, s.capacity, s.description, s.location, s.name, SUM(sr.quantity) AS total_quantity FROM fms_g20_storage AS s JOIN fms_g20_supply_requests AS sr ON s.id = sr.storage_loc WHERE sr.status = ? GROUP BY s.capacity, s.description, s.location, s.name;";
 
   con.query(q, ["Completed"], (err, data) => {
     if (err) {
       console.log("Error retrieving inventory:", err);
+      return res.json(err);
+    }
+    return res.send(data);
+  });
+};
+
+exports.supplyCodesByLocation = (req, res) => {
+  // Assuming the location is provided in the request body or query parameters
+  const location = req.params.location; // Adjust this based on how the location is provided
+  const q =
+    "SELECT supply_code FROM fms_g20_supply_requests WHERE storage_loc = ?";
+
+  con.query(q, [location], (err, data) => {
+    if (err) {
+      console.log("Error retrieving supply codes:", err);
       return res.json(err);
     }
     return res.send(data);

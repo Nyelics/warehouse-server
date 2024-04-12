@@ -34,6 +34,10 @@ router.post("/roles/store", accountController.storeRoles);
  */
 router.get("/supplies", supplyController.getSupplies);
 router.get("/supplies/completed", supplyController.completed);
+router.get(
+  "/supplies/supply-codes/:location",
+  supplyController.supplyCodesByLocation
+);
 router.post("/supplies/store", supplyController.store);
 router.patch("/supplies/patch", supplyController.patch);
 router.patch("/supplies/status", supplyController.status);
